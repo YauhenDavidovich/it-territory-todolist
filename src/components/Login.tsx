@@ -1,7 +1,5 @@
 import {useFormik} from 'formik';
-import {  Field, Form } from 'formik';
 import React from 'react';
-import {Link as RouterLink} from "react-router-dom";
 
 
 const Login = () => {
@@ -16,7 +14,7 @@ const Login = () => {
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false,
+            rememberMe: true,
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -31,28 +29,41 @@ const Login = () => {
             return errors;
         },
         onSubmit: values => {
+            console.log(values)
         }
     });
 
     return (
         <div className='main'>
             <div className='mainBlock'>
-                <Form onSubmit={formik.handleSubmit}>
-                    <label htmlFor="firstName">First Name</label>
-                    <Field id="firstName" name="firstName" placeholder="Jane" />
-
-                    <label htmlFor="lastName">Last Name</label>
-                    <Field id="lastName" name="lastName" placeholder="Doe" />
-
+                <form onSubmit={formik.handleSubmit}>
+                    <p>To log in get registered
+                        <a href={'https://social-network.samuraijs.com/'}
+                           target={'_blank'}>here
+                        </a>
+                    </p>
+                    <p>or use common test account credentials:</p>
+                    <p>Email: free@samuraijs.com</p>
+                    <p>Password: free</p>
                     <label htmlFor="email">Email</label>
-                    <Field
+                    <input
                         id="email"
                         name="email"
-                        placeholder="jane@acme.com"
-                        type="email"
-                    />
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                        placeholder="Email"/>
+
+                    <label htmlFor="password">Password</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        placeholder="Password"/>
+
                     <button type="submit">Submit</button>
-                </Form>
+                </form>
             </div>
         </div>
     )
