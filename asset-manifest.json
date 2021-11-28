@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/it-territory-todolist/static/css/main.977f1fe0.chunk.css",
+    "main.js": "/it-territory-todolist/static/js/main.61c17cdf.chunk.js",
+    "main.js.map": "/it-territory-todolist/static/js/main.61c17cdf.chunk.js.map",
+    "runtime-main.js": "/it-territory-todolist/static/js/runtime-main.29d729d5.js",
+    "runtime-main.js.map": "/it-territory-todolist/static/js/runtime-main.29d729d5.js.map",
+    "static/js/2.38fefe08.chunk.js": "/it-territory-todolist/static/js/2.38fefe08.chunk.js",
+    "static/js/2.38fefe08.chunk.js.map": "/it-territory-todolist/static/js/2.38fefe08.chunk.js.map",
+    "static/js/3.3b5e834c.chunk.js": "/it-territory-todolist/static/js/3.3b5e834c.chunk.js",
+    "static/js/3.3b5e834c.chunk.js.map": "/it-territory-todolist/static/js/3.3b5e834c.chunk.js.map",
+    "index.html": "/it-territory-todolist/index.html",
+    "static/css/main.977f1fe0.chunk.css.map": "/it-territory-todolist/static/css/main.977f1fe0.chunk.css.map",
+    "static/js/2.38fefe08.chunk.js.LICENSE.txt": "/it-territory-todolist/static/js/2.38fefe08.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.29d729d5.js",
+    "static/js/2.38fefe08.chunk.js",
+    "static/css/main.977f1fe0.chunk.css",
+    "static/js/main.61c17cdf.chunk.js"
+  ]
+}
