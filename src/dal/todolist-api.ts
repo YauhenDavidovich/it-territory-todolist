@@ -14,6 +14,7 @@ export const todolistsAPI = {
         return  instance.get<TodolistType[]>('todo-lists');
     },
     createTodolist(title: string) {
+        debugger
         return instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
     },
     deleteTodolist(id: string) {

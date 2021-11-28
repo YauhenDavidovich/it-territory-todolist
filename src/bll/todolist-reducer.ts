@@ -56,6 +56,7 @@ export const addTodolistTC = (title: string) => {
     return (dispatch: ThunkDispatch) => {
         todolistsAPI.createTodolist(title)
             .then((res) => {
+                debugger
                 dispatch(addTodolistAC(res.data.data.item))
             })
     }

@@ -1,9 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware from 'redux-thunk'
 import {authReducer} from "./auth-reducer";
+import {todolistsReducer} from "./todolist-reducer";
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    todolists: todolistsReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
