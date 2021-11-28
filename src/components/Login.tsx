@@ -1,8 +1,14 @@
-import {useFormik} from 'formik';
 import React from 'react';
-
+import {useFormik} from 'formik';
+import {useDispatch, useSelector} from "react-redux";
+import {Navigate} from 'react-router-dom';
+import {loginTC} from "../bll/auth-reducer";
+import {AppRootStateType} from "../bll/store";
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state =>
+        state.auth.isLoggedIn)
 
     type FormikErrorType = {
         email?: string
@@ -29,10 +35,12 @@ const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            console.log(values)
+            dispatch(loginTC(values))
         }
     });
-
+    if (isLoggedIn) {
+        return <Navigate to={'/todolist'}/>
+    }
     return (
         <div className='main'>
             <div className='mainBlock'>
