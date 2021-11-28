@@ -9,8 +9,7 @@ function App() {
       <Routes >
         <Route path='/login' element={<Login/>}/>
         <Route path='/todolist' element={<Todolist/>}/>
-        {/*<Route path='/404' element={<NotFound/>}/>*/}
-        <Route path="*" element={<Navigate to="/404" />}/>
+        <Route path="*" element={<Navigate to="/login" />}/>
       </Routes>
   );
 }
