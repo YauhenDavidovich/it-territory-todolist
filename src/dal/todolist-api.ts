@@ -14,7 +14,6 @@ export const todolistsAPI = {
         return  instance.get<TodolistType[]>('todo-lists');
     },
     createTodolist(title: string) {
-        debugger
         return instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
     },
     deleteTodolist(id: string) {
@@ -34,7 +33,10 @@ export const todolistsAPI = {
     },
     updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
         return instance.put<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks/${taskId}`, model);
-    }
+    },
+    reorderTask(todolistId: string, taskId: string, model: UpdateTaskOrderType) {
+        return instance.put<GetTasksResponse>(`todo-lists/${todolistId}/tasks/${taskId}/reorder`, model);
+    },
 }
 
 // types
@@ -77,6 +79,10 @@ export type TaskType = {
     order: number
     addedDate: string
 }
+export type UpdateTaskOrderType = {
+    putAfterItemId: string
+}
+
 export type UpdateTaskModelType = {
     title: string
     description: string
@@ -85,6 +91,7 @@ export type UpdateTaskModelType = {
     startDate: string
     deadline: string
 }
+
 type GetTasksResponse = {
     error: string | null
     totalCount: number

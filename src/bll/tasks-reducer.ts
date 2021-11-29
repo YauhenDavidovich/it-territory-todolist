@@ -1,6 +1,13 @@
 import {Dispatch} from 'redux'
 import {AddTodolistActionType, RemoveTodolistActionType, SetTodolistsActionType} from "./todolist-reducer";
-import {TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType} from "../dal/todolist-api";
+import {
+    TaskPriorities,
+    TaskStatuses,
+    TaskType,
+    todolistsAPI,
+    UpdateTaskModelType,
+    UpdateTaskOrderType
+} from "../dal/todolist-api";
 import {AppRootStateType} from "./store";
 
 const initialState: TasksStateType = {}
@@ -40,7 +47,6 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) =>
 export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
     todolistsAPI.getTasks(todolistId)
         .then((res) => {
-            debugger
             const tasks = res.data.items
             dispatch(setTasksAC(tasks, todolistId))
         })
@@ -65,13 +71,23 @@ export const addTaskTC = (title: string, todolistId: string) => (dispatch: Dispa
             console.log(error)
         })
 }
+
+export const updateTaskOrderTC = (todolistId: string, taskId: string, model: UpdateTaskOrderType) => (dispatch: Dispatch<ActionsType>) => {
+    todolistsAPI.reorderTask(todolistId, taskId, model)
+        .then((res) => {
+        // const tasks = res.data.items
+        // dispatch(setTasksAC(tasks, todolistId))
+    })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
 export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelType, todolistId: string) =>
     (dispatch: ThunkDispatch, getState: () => AppRootStateType) => {
         const state = getState()
-        // @ts-ignore
         const task = state.tasks[todolistId].find(t => t.id === taskId)
         if (!task) {
-            //throw new Error("task not found in the state");
             console.warn('task not found in the state')
             return
         }
@@ -106,6 +122,7 @@ export type UpdateDomainTaskModelType = {
     priority?: TaskPriorities
     startDate?: string
     deadline?: string
+
 }
 export type TasksStateType = {
     [key: string]: Array<TaskType>
