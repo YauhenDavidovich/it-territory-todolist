@@ -28,13 +28,15 @@ export const TasksContainer = (props: TasksPropsType) => {
 
     useEffect(() => {
         dispatch(fetchTasksTC(props.todolistId))
-    }, [])
+    }, [dispatch])
+
     useEffect(() => {
         updateTask(allTodolistTasks)
     }, [allTodolistTasks])
 
     const handleAddedTaskName = (name: string) => {
         updateTaskName(name)
+        dispatch(fetchTasksTC(props.todolistId))
     }
     const addTaskHandler = () => {
         dispatch(addTaskTC(taskName, props.todolistId))
@@ -46,6 +48,7 @@ export const TasksContainer = (props: TasksPropsType) => {
 
     const updateTaskTitle = (id:string, title: string) => {
         dispatch(updateTaskTC(id, {title:title},props.todolistId))
+
     }
 
     const handleChangeStatus = (id:string, e:boolean) => {
@@ -95,7 +98,7 @@ export const TasksContainer = (props: TasksPropsType) => {
                                     return (
                                         <Draggable key={id} draggableId={id} index={index}>
                                             {(provided) => (
-                                                <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className={status === TaskStatuses.Completed ? 'task is-done' : 'task new'}>
+                                                <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className={'task'}>
                                                     <label>
                                                         <input
                                                             type="checkbox"
@@ -103,10 +106,10 @@ export const TasksContainer = (props: TasksPropsType) => {
                                                             onChange={(e)=>handleChangeStatus(id, e.currentTarget.checked)}
                                                         />
                                                     </label>
-                                                    <div className="description">
-                                                        {description}
+                                                    <div className={status === TaskStatuses.Completed ? 'is-done' : 'new'}>
+                                                        <EditableSpan value={title} onChange={(e)=>updateTaskTitle(id, e)}/>
                                                     </div>
-                                                    <EditableSpan value={title} onChange={(e)=>updateTaskTitle(id, e)}/>
+
                                                     <button onClick={()=>deleteTaskHandler(id)}>Delete</button>
                                                 </li>
                                             )}

@@ -13,7 +13,7 @@ export const Todolist = () => {
 
     useEffect(() => {
         dispatch(fetchTodolistsTC())
-    }, [])
+    }, [todolists])
 
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state =>

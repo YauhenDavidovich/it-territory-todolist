@@ -25,14 +25,16 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
+  border: 1px solid #d2ccb1;
 }
 
 .is-done {
-  border: 1px solid #d2ccb1;
   text-decoration: line-through;
 }
 
-.new {
-  border: 1px solid #8CE0EB;
+
+.task button {
+  background-color: red;
+  border-radius: 5px;
 }
